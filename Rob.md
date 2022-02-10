@@ -1,0 +1,1 @@
+Fun fact: Love all NYC foods,animals, volunteering, all things sci-fi and the CES is my comi-con.
