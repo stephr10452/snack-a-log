@@ -16,8 +16,8 @@ app.get("/",(req,res)=>{
     res.send("Get Snack'n at Snack-a-log!")
 })
 
-// const snackController = require("./controllers/snackController")
+const snackController = require("./controllers/snackController")
 
-// app.use("/snacks",snackController);
-// EXPORT
+app.use("/snacks",snackController);
+EXPORT
 module.exports = app;
