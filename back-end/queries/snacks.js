@@ -17,8 +17,8 @@ const getAllSnacks = async() => {
                 id
             );
             return oneSnack;
-        } catch(err){
-            return err;
+        } catch(error){
+            return error;
         }
     }
 
