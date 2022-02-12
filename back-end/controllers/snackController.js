@@ -23,7 +23,7 @@ snacks.get("/:id",async(req,res)=>{
         if(snack.id){
         res.status(200).json(snack);
     } else { 
-        res.status(500).json({error:"Snack not found"});
+        res.status(404).json({error:"Snack not found"});
     }
     } catch(err){
         console.log(err)
@@ -37,7 +37,7 @@ snacks.post("/", checkName, checkHealthy, async(req,res)=>{
         if(createdSnack.id){
         res.status(200).json(createdSnack);
     } else { 
-        res.status(500).json({error:"Snack creation error"});
+        res.status(422).json({error:"Must include name field"});
     }
     } catch(error){
         console.log(error);
