@@ -22,7 +22,7 @@ const getAllSnacks = async() => {
         }
     }
 
-const createSnack = (snack) => {
+const createSnack = async (snack) => {
     try{
         const newSnack = await db.one(
             "INSERT INTO snacks (name, fiber, protein, added_sugar, is_healthy) VALUES($1, $2, $3, $4, $5) RETURNING *",
