@@ -3,9 +3,9 @@ import heartOutline from "../assets/heart-regular.png";
 
 function HeartHealth({ snackHealth }) {
   return (
-    <>
-      <p>????</p>
-    </>
+    <td>
+      <p></p>
+    </td>
   );
 }
 
