@@ -18,7 +18,7 @@ function SnackDetails() {
         }).catch(()=>{
           navigate("/not-found")
         })
-    }, []);
+    }, [id, navigate]);
 
     const handleDelete = () =>{
      axios.delete(`${process.env.REACT_APP_API_URL}/snacks/${id}`)
@@ -46,18 +46,18 @@ return (
         <div>
           {" "}
           <Link to={`/snacks`}>
-            <button type="button" class="btn btn-outline-primary">Back</button>
+            <button type="button" className="btn btn-outline-primary">Back</button>
           </Link>
         </div>
         <div>
           {" "}
           <Link to={`/snacks/${id}/edit`}>
-            <button type="button" class="btn btn-outline-success">Edit</button>
+            <button className="btn btn-outline-success">Edit</button>
           </Link>
         </div>
         <div>
           {" "}
-          <button type="button" class="btn btn-outline-danger"  onClick={handleDelete}>Delete</button>
+          <button type="button" className="btn btn-outline-danger"  onClick={handleDelete}>Delete</button>
         </div>
         </div>
   </div>

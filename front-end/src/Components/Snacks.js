@@ -11,11 +11,11 @@ function Snacks() {
         axios
           .get(`${API_URL}/snacks`)
           .then((res) => {
-              setSnacks(res.data);
+              setSnacks(res.data.payload);
         }).catch((error) => {
               throw error
       })
-    }, []);
+    }, [API_URL]);
 
     return (
         <div>
@@ -25,16 +25,16 @@ function Snacks() {
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Image</th>
                                 <th>Fiber</th>
                                 <th>Protein</th>
                                 <th>Added Sugar</th>
                                 <th>Is Healthy</th> 
+                                <th>Image</th>
                             </tr>
                         </thead>
                          <tbody>
-                             {snacks.map((snack, id) => {
-                                 return ( <Snack key={id} snack={snack} index={id} /> );
+                             {snacks.map((snack, index) => {
+                                 return ( <Snack key={index} snack={snack} /> );
                              })}
                          </tbody>
                     </table>

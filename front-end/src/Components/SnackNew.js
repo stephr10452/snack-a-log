@@ -10,16 +10,20 @@ function SnackNew() {
 
     const [snack, setSnack] = useState({
         name: '',
-        image: '',
         fiber: 0,
         protein: 0,
         added_sugar: 0,
         is_healthy: false,
+        image: ''
     });
 
     const handleTextChange = (event) => {
         setSnack({...snack,[event.target.id]: event.target.value });
     };
+
+    // const handleCheckboxChange = () => {
+ 
+    // }
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -34,14 +38,14 @@ function SnackNew() {
 
     return (
         <div>
-          <div class='snackNew'>
+          <div className='snackNew'>
            <div>
              <h1>Add a New item</h1>    
            </div>   
-            <form class='newVals' onSubmit={handleSubmit}>
+            <form className='newVals' onSubmit={handleSubmit}>
             <br/>
               <div>
-                  <lable htmlFor='name'>Name</lable><br/>
+                  <label htmlFor='name'>Name</label><br/>
                   <imput
                       id = 'name'
                       value = {snack.name}
@@ -66,7 +70,7 @@ function SnackNew() {
                </div>
                <br/>
                <div>
-                    <lable htmlFor='fiber'>Fiber</lable><br/>
+                    <label htmlFor='fiber'>Fiber</label><br/>
                     <input
                       id = 'fiber'
                       value = {snack.fiber}
@@ -78,7 +82,7 @@ function SnackNew() {
                </div>  
                <br/>
                <div>
-                    <lable htmlFor='protein'>Fiber</lable><br/>
+                    <label htmlFor='protein'>Fiber</label><br/>
                     <input
                       id = 'protein'
                       value = {snack.protein}
@@ -90,7 +94,7 @@ function SnackNew() {
                </div> 
                <br/> 
                <div>
-                    <lable htmlFor='added_sugar'>Fiber</lable><br/>
+                    <label htmlFor='added_sugar'>Added sugar</label><br/>
                     <input
                       id = 'added_sugar'
                       value = {snack.added_sugar}
@@ -102,22 +106,22 @@ function SnackNew() {
                </div> 
                <br/>
                <div>
-                    <lable htmlFor='is_healthy'>Fiber</lable><br/>
+                    <label htmlFor='is_healthy'>Is heathy</label><br/>
                     <input
                       id = 'is_healthy'
                       type = 'checkbox'
-                      onChange = {handleCheckboxChange}
+                      // onChange = {handleCheckboxChange}
                       checked = {snack.is_healthy}
                     />       
                </div> 
                <br/>
-               <div class='snackNewBtns'>
+               <div className='snackNewBtns'>
                   <div>
                     <input type = 'submit' value = 'Create new item' />
                   </div> 
                   <br/>
                    <Link to = {`/snacks/${id}`}>
-                       <button type = ' submit'>Back</button>
+                       <button type = 'submit'>Back</button>
                    </Link>
                </div>
             </form>

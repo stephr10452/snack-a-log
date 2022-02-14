@@ -27,7 +27,7 @@ const handleCheckboxChange = () => {
 
 useEffect(() => {
     axios
-      .get(`${API_URL}/snack/${id}`)
+      .get(`${API_URL}/snacks/${id}`)
       .then((res) => {
           setSnack(res.data);
     }).catch((error) => {
@@ -35,38 +35,36 @@ useEffect(() => {
   })
 }, [id]);
 
-const handleSubmit = (event) => {
+const handleEdit = (event) => {
     event.preventDefault()
     axios
-      .put(`${API_URL}/snack/${id}`, snack)
+      .put(`${API_URL}/snacks/${id}`, snack)
       .then((res) => {
-          navigate(`/snack`)
+          navigate(`/snacks`)
     }).catch((error) => {
         console.log(error);
     })
 };
 
 return (
- <div class='snackEdit'>
+ <div className='snackEdit'>
    <div>
-     <form onSubmit={handleSubmit}>
+     <form onSubmit={handleEdit}>
      <br/>
-       <div>
-           <lable htmlFor='name'>Name</lable><br/>
-           <imput
-               id = 'name'
+           <label htmlFor="name">Name</label>
+           <input 
+               id = "name"
                value = {snack.name}
-               type= 'text'
+               type = "text"
                onChange = {handleTextChange}
-               placeholder = 'name'
+               placeholder = "name"
                required
                />
-       </div>
        <br/>
        <div>
-           <label html='url'>URL</label><br/>
+           <label htmlFor='image'>URL</label><br/>
            <input
-              id = 'url'
+              id = 'image'
               type = 'text'
               pattern = 'http[s]*://.+'
               required
@@ -77,7 +75,7 @@ return (
         </div>
         <br/>
         <div>
-             <lable htmlFor='fiber'>Fiber</lable><br/>
+             <label htmlFor='fiber'>Fiber</label><br/>
              <input
                id = 'fiber'
                value = {snack.fiber}
@@ -89,7 +87,7 @@ return (
         </div>  
         <br/>
         <div>
-             <lable htmlFor='protein'>Fiber</lable><br/>
+             <label htmlFor='protein'>Protein</label><br/>
              <input
                id = 'protein'
                value = {snack.protein}
@@ -101,7 +99,7 @@ return (
         </div> 
         <br/> 
         <div>
-             <lable htmlFor='added_sugar'>Fiber</lable><br/>
+             <label htmlFor='added_sugar'>Added Sugar</label><br/>
              <input
                id = 'added_sugar'
                value = {snack.added_sugar}
@@ -113,7 +111,7 @@ return (
         </div> 
         <br/>
         <div>
-             <lable htmlFor='is_healthy'>Fiber</lable><br/>
+             <label htmlFor='is_healthy'>Is Healthy</label><br/>
              <input
                id = 'is_healthy'
                type = 'checkbox'
@@ -122,11 +120,11 @@ return (
              />       
         </div> 
         <br/>
-        <div class='snackEditBtns'>
-            <input type = 'submit' value = 'Submit Item' /><br/>
+        <div className='snackEditBtns'>
+            <input type = 'submit' /><br/>
             <br/>
             <Link to = {`/snacks/${id}`}>
-                <button type = ' submit'>Back</button>
+                <button>Back</button>
             </Link>
         </div>
      </form>
