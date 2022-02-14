@@ -1,22 +1,24 @@
 import { Link } from "react-router-dom";
 
-function Snack({ snack, id }) {
+function Snack({ snack }) {
   return (
-    <table id="myTable" class=" table order-list" >
-      <thead>
+    // <table id="myTable" className=" table order-list" >
+    //   <thead>
       <tr>
-        <td class="col-sm-4" >  {snack.fiber}</td>
-        <td class="col-sm-4" >  {snack.name}</td>
-        <td class="col-sm-4">{snack.protein}</td>
-        <td class="col-sm-4" >
-        <Link to={`/snacks/${id}`}> 
-          {snack.image}
+      <td className="col-sm-4" >{snack.name}</td>
+        <td className="col-sm-4" >{snack.fiber}</td>
+        <td className="col-sm-4" >{snack.protein}</td>
+        <td className="col-sm-4">{snack.added_sugar}</td>
+        <td className="col-sm-4">{snack.is_healthy}</td>
+        <td className="col-sm-4" >
+        <Link to={`/snacks/${snack.id}`}> 
+          <img src={ snack.image } />
           </Link>
         </td>
         
       </tr>
-      </thead>
-      </table>
+    //   </thead>
+    //   </table>
   );
 }
 

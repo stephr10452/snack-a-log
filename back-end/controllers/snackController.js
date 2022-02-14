@@ -8,7 +8,7 @@ snacks.get("/", async (req, res)=>{
         const allSnacks = await getAllSnacks();
         if(allSnacks[0]){
             res.status(200).json({
-                success:true,
+                sucesss: true,
                 payload: allSnacks
             });
         } else {
@@ -19,12 +19,12 @@ snacks.get("/", async (req, res)=>{
     }
 });
 
-snacks.get("/:id",async(req,res)=>{
+snacks.get("/:id", async(req,res)=>{
     const { id } = req.params;
     try{
         const snack = await getSnack(id);
         if(snack.id){
-        res.status(200).json(snack);
+        res.status(200).json({success: true, payload: snack});
     } else { 
         res.status(404).json({error:"Snack not found"});
     }
