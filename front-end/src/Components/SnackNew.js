@@ -45,7 +45,7 @@ function SnackNew() {
                 <form onSubmit={handleSubmit} className='newVals'>
                   <div>
                       <label htmlFor='itemName'>Name</label><br/>
-                      <imput
+                      <input
                           id = 'name'
                           value = {snack.name}
                           type= 'text'
