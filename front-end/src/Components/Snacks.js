@@ -33,8 +33,8 @@ function Snacks() {
                             </tr>
                         </thead>
                          <tbody>
-                             {snacks.map((snack, index) => {
-                                 return ( <Snack key={index} snack={snack} /> );
+                             {snacks.map((snack, id) => {
+                                 return ( <Snack key={id} snack={snack} id={id} /> );
                              })}
                          </tbody>
                     </table>

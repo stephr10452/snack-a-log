@@ -1,35 +1,33 @@
-import axios from 'axios';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 function SnackEdit() {
     const { id } = useParams();
-    const navigate = useNavigate();
+
 
 const [snack, setSnack] = useState({
     name: '',
-    image: '',
     fiber: 0,
     protein: 0,
     added_sugar: 0,
     is_healthy: false,
+    image: ''
 });
+
+const navigate = useNavigate();
 
 const handleTextChange = (event) => {
     setSnack({...snack,[event.target.id]: event.target.value });
 };
 
-const handleCheckboxChange = () => {
-    setSnack({ ...snack, is_healthy: !snack.is_healthy });
-}
-
 useEffect(() => {
     axios
       .get(`${API_URL}/snacks/${id}`)
       .then((res) => {
-          setSnack(res.data);
+          setSnack(res.data.payload);
     }).catch((error) => {
           throw error
   })
@@ -51,7 +49,7 @@ return (
    <div>
      <form onSubmit={handleEdit}>
      <br/>
-           <label htmlFor="name">Name</label>
+           <label htmlFor="Itemname">Name</label>
            <input 
                id = "name"
                value = {snack.name}
@@ -61,19 +59,6 @@ return (
                required
                />
        <br/>
-       <div>
-           <label htmlFor='image'>URL</label><br/>
-           <input
-              id = 'image'
-              type = 'text'
-              pattern = 'http[s]*://.+'
-              required
-              value = {snack.image}
-              placeholder = 'http://'
-              onChange = {handleTextChange}
-            />
-        </div>
-        <br/>
         <div>
              <label htmlFor='fiber'>Fiber</label><br/>
              <input
@@ -111,20 +96,23 @@ return (
         </div> 
         <br/>
         <div>
-             <label htmlFor='is_healthy'>Is Healthy</label><br/>
-             <input
-               id = 'is_healthy'
-               type = 'checkbox'
-               onChange = {handleCheckboxChange}
-               checked = {snack.is_healthy}
-             />       
-        </div> 
+           <label htmlFor='image'>URL</label><br/>
+           <input
+              id = 'image'
+              type = 'text'
+              pattern = 'http[s]*://.+'
+              required
+              value = {snack.image}
+              placeholder = 'http://'
+              onChange = {handleTextChange}
+            />
+        </div>
         <br/>
         <div className='snackEditBtns'>
-            <input type = 'submit' /><br/>
+            <input type = 'submit' value = 'Submit Snack' /><br/>
             <br/>
             <Link to = {`/snacks/${id}`}>
-                <button>Back</button>
+                <button type = 'submit'>Back</button>
             </Link>
         </div>
      </form>

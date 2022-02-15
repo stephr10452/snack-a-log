@@ -1,69 +1,56 @@
-import {useState, useEffect} from "react";
-import {Link, useParams} from "react-router-dom"
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
- 
+const API_URL = process.env.REACT_APP_API_URL;
 
 function SnackDetails() {
     const [snack, setSnack] = useState([]);
-    let {id} = useParams();
+    let { id } = useParams();
     let navigate = useNavigate();
     
-    useEffect(()=>{
-      axios.get(`${process.env.REACT_APP_API_URL}/snack/${id}`)
-        .then((res)=>{
-          setSnack(res.data);
-        }).catch(()=>{
-          navigate("/not-found")
-        })
-    }, [id, navigate]);
+    useEffect(() => {
+      axios
+        .get(`${API_URL}/snacks/${id}`)
+        .then((res) => {
+          setSnack(res.data.payload);
+      }).catch((error) => {
+          throw error
+        });
+    }, [id]);
 
-    const handleDelete = () =>{
-     axios.delete(`${process.env.REACT_APP_API_URL}/snacks/${id}`)
-     .then((res)=>{
-         navigate("/snacks")
-     }).catch((err)=>{
-         console.log(err)
-     })
-    }
+    function handleDelete() {
+     axios 
+        .delete(`${API_URL}/snacks/${id}`)
+        .then((res) => {
+            navigate('/snacks');
+      }).catch((error)=>{
+         console.log(error);
+     });
+    };
 
   
 return (
-    <div className="one">
-     <div className="card tex-center">
-      <div className="card-header">
-           Snack Details
-       </div>
-    <p>Snack: {snack.name}</p>
-    <p>Snack Fiber: {snack.fiber}</p>
-    <p>Snack Protein: {snack.protein}</p>
-    <p> {snack.image}</p>
-    
+ <div>
+    <div className='snackDetail'>    
+        <div>Snack: {snack.name}</div>
+        <div>Snack Fiber: {snack.fiber}</div>
+        <div>Snack Protein: {snack.protein}</div>
+        <div>Snack Added Sugar: {snack.added_sugar}</div>
+        <div><img src={ snack.image } /></div>
     </div>
-    <div className="btn-group">
-        <div>
-          {" "}
-          <Link to={`/snacks`}>
-            <button type="button" className="btn btn-outline-primary">Back</button>
-          </Link>
-        </div>
-        <div>
-          {" "}
-          <Link to={`/snacks/${id}/edit`}>
-            <button className="btn btn-outline-success">Edit</button>
-          </Link>
-        </div>
-        <div>
-          {" "}
-          <button type="button" className="btn btn-outline-danger"  onClick={handleDelete}>Delete</button>
-        </div>
-        </div>
-  </div>
-)
+        <div className='detailBtns'>
+            <Link to={`/snacks`}>
+              <button id='dtBn1'>Back</button>
+            </Link>
+            <Link to={`/snacks/${id}/edit`}>
+              <button id='dtBn2'>Edit</button>
+            </Link>
+              <button id='dtBn3' onClick={handleDelete}>Delete</button>
+        </div>  
+    </div>
+);
 }
-
 
 export default SnackDetails;
 

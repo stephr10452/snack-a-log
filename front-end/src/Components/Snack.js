@@ -1,25 +1,23 @@
 import { Link } from "react-router-dom";
+// import HeartHealth from './HeartHealth.js';
 
-function Snack({ snack }) {
+function Snack({ snack, id }) {
   return (
-    // <table id="myTable" className=" table order-list" >
-    //   <thead>
-      <tr>
-      <td className="col-sm-4" >{snack.name}</td>
-        <td className="col-sm-4" >{snack.fiber}</td>
-        <td className="col-sm-4" >{snack.protein}</td>
-        <td className="col-sm-4">{snack.added_sugar}</td>
-        <td className="col-sm-4">{snack.is_healthy}</td>
-        <td className="col-sm-4" >
-        <Link to={`/snacks/${snack.id}`}> 
-          <img src={ snack.image } />
-          </Link>
-        </td>
-        
+      <tr className='snack'>
+            <td>
+              <Link id='hr'to={`/snacks/${snack.id}`}>{snack.name}</Link>
+            </td>
+            <td >{snack.fiber}</td>
+            <td >{snack.protein}</td>
+            <td>{snack.added_sugar}</td>
+            <td>{snack.is_healthy}</td>
+            <td>
+              <Link to={`/snacks/${snack.id}`}> 
+                  <img src={ snack.image } />
+              </Link>
+            </td>
       </tr>
-    //   </thead>
-    //   </table>
-  );
+  )
 }
 
 export default Snack;
