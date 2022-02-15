@@ -7,11 +7,6 @@ function HeartHealth({ snackHealth }) {
 } else { 
   return <h4><img className = 'heart' scr = {heartOutline} alt = 'unhealthy Food' /></h4> 
 }
-
-    // <td>
-    //   <p></p>
-    // </td>
-
 }
 
 export default HeartHealth;
