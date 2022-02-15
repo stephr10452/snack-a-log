@@ -2,6 +2,7 @@ const express = require("express");
 const snacks = express.Router();
 const { getAllSnacks, getSnack, createSnack, deleteSnack, updateSnack } = require("../queries/snacks");
 const { checkName, checkHealthy } = require('../validations/checkSnacks')
+const confirmHealth = require('../confirmHealth.js')
 
 snacks.get("/", async (req, res)=>{
     try{
@@ -33,14 +34,20 @@ snacks.get("/:id", async(req,res)=>{
     }
 });
 
-snacks.post("/", checkName, checkHealthy, async(req,res)=>{
+snacks.post("/", checkName,  async(req,res)=>{
     const { body } = req.params;
     try{
         const createdSnack = await createSnack(body);
+        confirmHealth(createdSnack);
+        if(!createdSnack.image){
+            createdSnack.image = "https://dummyimage.com/400x400/6e6c6e/e9e9f5.png&text=No+Image"
+        }
         if(createdSnack.id){
-        res.status(200).json(createdSnack);
+        res.status(200).json({ sucesss: true,
+            payload: createdSnack});
     } else { 
-        res.status(422).json({error:"Must include name field"});
+        res.status(404).json({ sucesss: false,
+            payload: "snack cannot be added" });
     }
     } catch(error){
         console.log(error);
