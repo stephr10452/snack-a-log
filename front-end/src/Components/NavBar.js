@@ -1,16 +1,18 @@
-import {Link} from "react-router-dom"
+import { Link}  from "react-router-dom";
+import HeartH
 
-function NavBar(){
+function NavBar() {
     return(
-      <nav>
-          <h1>
-              <Link to="/snacks">Snack-a-log</Link>
-          </h1>
-          <button>
-              <Link to="/snacks/new">NEW Snack</Link>
-          </button>
-      </nav>  
-    )
+        <div>
+            <nav className='navbar'>
+            
+                    <Link id='snkApp'to="/snacks">Snack-a-log</Link>
+            
+                    <Link id='newS' to="/snacks/new"><button>New Snack</button></Link>
+            
+            </nav>  
+        </div>    
+    );
 }
 
-export default NavBar
+export default NavBar;
