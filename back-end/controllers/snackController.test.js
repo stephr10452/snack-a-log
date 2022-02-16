@@ -142,7 +142,7 @@ describe("snacks", () => {
     describe("POST", () => {
       it("with valid snack name and image - can create a snack", async () => {
         const response = await request(snacks).post("/snacks").send({
-          name: "Spiders on a Log",
+          name: "Ants on a Log",
           image:
             "https://i3.wp.com/onmykidsplate.com/wp-content/uploads/2018/09/Halloween-Snack-Spider-Peanut-Butter-Celery.jpg",
           fiber: 6,
