@@ -7,14 +7,13 @@ const API_URL = process.env.REACT_APP_API_URL;
 function SnackEdit() {
     const { id } = useParams();
 
-
-const [snack, setSnack] = useState({
-    name: '',
-    fiber: 0,
-    protein: 0,
-    added_sugar: 0,
-    is_healthy: false,
-    image: ''
+    const [snack, setSnack] = useState({
+        name: '',
+        fiber: 0,
+        protein: 0,
+        added_sugar: 0,
+        is_healthy: false,
+        image: ''
 });
 
 const navigate = useNavigate();
@@ -35,6 +34,7 @@ useEffect(() => {
 
 const handleEdit = (event) => {
     event.preventDefault()
+
     axios
       .put(`${API_URL}/snacks/${id}`, snack)
       .then((res) => {
@@ -49,7 +49,7 @@ return (
    <div>
      <form onSubmit={handleEdit}>
      <br/>
-           <label htmlFor="Itemname">Name</label>
+           <label htmlFor="name">Name</label>
            <input 
                id = "name"
                value = {snack.name}
@@ -96,7 +96,7 @@ return (
         </div> 
         <br/>
         <div>
-           <label htmlFor='image'>URL</label><br/>
+           <label htmlFor='image'>Image</label><br/>
            <input
               id = 'image'
               type = 'text'
@@ -109,7 +109,7 @@ return (
         </div>
         <br/>
         <div className='snackEditBtns'>
-            <input type = 'submit' value = 'Submit Snack' /><br/>
+            <button type = 'submit' >Submit Snack</button>
             <br/>
             <Link to = {`/snacks/${id}`}>
                 <button type = 'submit'>Back</button>
