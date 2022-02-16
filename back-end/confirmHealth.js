@@ -30,7 +30,7 @@ if(protein < 5 && fiber < 5  && added_sugar < 5){
 if(typeof protein !== "number" || typeof fiber !== "number" || typeof added_sugar !== "number"){
    return   null
 }
-
+console.log("Sr")
 };
 
 
