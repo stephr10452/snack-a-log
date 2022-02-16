@@ -2,6 +2,7 @@
 const cors = require("cors");
 const express = require("express");
 
+
 // CONFIGURATION
 const app = express();
 
@@ -9,7 +10,7 @@ const app = express();
 // MIDDLEWARE
 app.use(cors());
 app.use(express.json());
-// require("dotenv").config();
+require("dotenv").config();
 
 // ROUTES
 app.get("/",(req, res)=>{
