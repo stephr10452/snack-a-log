@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import HeartHealth from './HeartHealth.js';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -15,7 +16,7 @@ function SnackDetails() {
         .then((res) => {
           setSnack(res.data.payload);
       }).catch((error) => {
-          throw error
+        console.log(error);
         });
     }, [id]);
 

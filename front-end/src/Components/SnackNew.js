@@ -21,9 +21,9 @@ function SnackNew() {
         setSnack({...snack,[event.target.id]: event.target.value });
     };
 
-    // const handleCheckboxChange = () => {
- 
-    // }
+    // const handleHeartChange = () => {
+    //     setSnack({...snack, is_healthy: !snack.is_healthy});
+    // };
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -36,15 +36,29 @@ function SnackNew() {
         })
     };
 
+    function handleHeartChange() {
+      setSnack({...snack, is_healthy: !snack.is_healthy});
+    };
+
+    function handleSubmitChangeIndex() {
+      axios
+         .put(`${API_URL}/snacks/${id}`, snack)
+         .then((res) => {
+           navigate('/snacks');
+       }).catch((error) => {
+           console.log(error);
+       })
+    };
+
     return (
         <div>
           <div className='snackNew'>
-             <h1>Add a new snack</h1>    
+             <h1>Add New Snacks</h1>    
           </div>  
              <div>
                 <form onSubmit={handleSubmit} className='newVals'>
                   <div>
-                      <label htmlFor='itemName'>Name</label><br/>
+                      <label htmlFor='name'>Name</label><br/>
                       <input
                           id = 'name'
                           value = {snack.name}
@@ -80,7 +94,7 @@ function SnackNew() {
                   </div> 
                   <br/> 
                   <div>
-                        <label htmlFor='added_sugar'>Added sugar</label><br/>
+                        <label htmlFor='added_sugar'>Added Sugar</label><br/>
                         <input
                           id = 'added_sugar'
                           value = {snack.added_sugar}
@@ -92,9 +106,9 @@ function SnackNew() {
                   </div> 
                   <br/>
                   <div>
-                      <label html='url'>URL</label><br/>
+                      <label htmlFor='image'>Image</label><br/>
                       <input
-                        id = 'url'
+                        id = 'image'
                         type = 'text'
                         pattern = 'http[s]*://.+'
                         required
@@ -105,9 +119,9 @@ function SnackNew() {
                   </div>
                   <br/>
                   <div className='snackNewBtns'>
-                      <div>
-                        <input type = 'submit' value = 'Create new snack' />
-                      </div> 
+                  
+                        <button onClick={handleSubmitChangeIndex}>Create New Snack</button>
+                    
                       <br/>
                       <Link to = {`/snacks/${id}`}>
                           <button type = 'submit'>Back</button>

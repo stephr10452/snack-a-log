@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-// import HeartHealth from './HeartHealth.js';
 
-function Snack({ snack, id }) {
+function Snack({ snack }) {
   return (
       <tr className='snack'>
             <td>
